@@ -6,12 +6,24 @@ var express = require('express'),
     serveStatic = require('serve-static');
 
 var app = express();
-
 var Post = require('./models/post.js');
 
 app.use(bodyParser.json());
 app.use(serveStatic('public'));
 app.use(serveStatic('bower_components'));
+
+app.get('/', function (req, res) {
+  var options = {
+      root: __dirname + '/layouts/',
+      dotfiles: 'deny',
+      headers: {
+          'x-timestamp': Date.now(),
+          'x-sent': true
+      }
+    };
+
+  res.sendFile('posts.html', options);
+});
 
 app.get('/api/posts', function (req, res, next) {
   Post.find(function (err, posts) {

@@ -1,24 +1,20 @@
 var app = angular.module('app', []);
 
-app.controller('PostsCtrl', function ($scope) {
+app.controller('PostsCtrl', function ($scope, $http) {
   $scope.addPost = function () {
     if ($scope.postBody) {
-      $scope.posts.unshift({
+      $http.post('/api/posts', {
         username: 'dickeyxxx',
         body: $scope.postBody
+      })
+      .success(function (post) {
+        $scope.posts.unshift(post);
+        $scope.postBody = null;
       });
-      $scope.postBody = null;
     }
   };
 
-  $scope.posts = [
-    {
-      username: 'dickeyxxx',
-      body: 'Node rządzi!'
-    },
-    {
-      username: 'jeffdickey',
-      body: 'Testujemy AngularJS...'
-    }
-  ];
+  $http.get('/api/posts').success(function (posts) {
+    $scope.posts = posts;
+  });
 });
