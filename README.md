@@ -14,6 +14,10 @@ Uruchomenie bazy danych MongoDB:
 
     mongod --dbpath <path>/social
 
-Uruchomienie serwera:
+Uruchomienie aplikacji w trybie produkcyjnym:
 
     npm start
+
+Uruchomienie aplikacji w trybie deweloperskim:
+
+    gulp dev

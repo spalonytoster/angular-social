@@ -8,7 +8,7 @@ var express = require('express'),
 var app = express();
 
 app.use(bodyParser.json());
-app.use(serveStatic('public'));
+app.use(serveStatic('assets'));
 app.use(serveStatic('bower_components'));
 
 
