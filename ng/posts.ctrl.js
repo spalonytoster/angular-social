@@ -2,7 +2,6 @@ app.controller('PostsCtrl', function ($scope, PostsSvc) {
   $scope.addPost = function () {
     if ($scope.postBody) {
       PostsSvc.create({
-        username: 'dickeyxxx',
         body: $scope.postBody
       })
       .success(function (post) {

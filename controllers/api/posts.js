@@ -10,9 +10,14 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
   var post = new Post({
-    username: req.body.username,
     body: req.body.body
   });
+  if (req.auth) {
+    post.username = req.auth.username;
+  }
+  else {
+    res.sendStatus(401);
+  }
   post.save(function (err, post) {
     if (err) { return next(err); }
     res.status(201).json(post);

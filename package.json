@@ -12,8 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "app-root-path": "^1.0.0",
+    "bcrypt": "^0.8.6",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "jwt-simple": "^0.5.0",
     "mongoose": "^4.4.15",
     "serve-static": "^1.10.2"
   },

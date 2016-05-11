@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>App</title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" charset="utf-8">
+    <link rel="stylesheet" href="/app.css" charset="utf-8">
+  </head>
+  <body ng-app="app" ng-controller="ApplicationCtrl">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li><a href="/#/">Posty</a></li>
+          <li><a href="/#/register">Rejestracja</a></li>
+          <li><a href="/#/login">Logowanie</a></li>
+        </ul>
+        <p ng-if="currentUser" class="navbar-text navbar-right">
+          Zalogowany jako <strong>{{currentUser.username}}</strong>
+        </p>
+      </div>
+    </nav>
+    <div ng-view></div>
+  </body>
+  <script src="/angular/angular.js" charset="utf-8"></script>
+  <script src="/angular-route/angular-route.js"></script>
+  <script src="/app.js" charset="utf-8"></script>
+</html>
