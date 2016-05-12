@@ -5,13 +5,18 @@ angular.module('app')
   svc.getUser = function () {
     return $http.get('/api/users');
   };
-  svc.login = function (username, password) {
+  svc.login = function (username, password, rememberMe) {
     return $http.post('/api/sessions', {
       username: username,
       password: password
     })
     .then(function (val) {
-      svc.token = val.data;
+      if (rememberMe) {
+        console.log('rememberMe - userSvc');
+        window.localStorage.token = val.data;
+        console.log('token from localStorage: ' + window.localStorage.token);
+      }
+      // svc.token = val.data;
       $http.defaults.headers.common['X-auth'] = val.data;
       return svc.getUser();
     });
