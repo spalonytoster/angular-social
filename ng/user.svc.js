@@ -1,7 +1,7 @@
 angular.module('app')
 .service('UserSvc', function ($http) {
   var svc = this;
-  
+
   svc.getUser = function () {
     return $http.get('/api/users');
   };
@@ -14,6 +14,15 @@ angular.module('app')
       svc.token = val.data;
       $http.defaults.headers.common['X-auth'] = val.data;
       return svc.getUser();
+    });
+  };
+  svc.logout = function () {
+    delete $http.defaults.headers.common['X-auth'];
+  };
+  svc.createUser = function (username, password) {
+    return $http.post('/api/users', {
+      username: username,
+      password: password
     });
   };
 });
