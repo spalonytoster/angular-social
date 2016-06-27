@@ -1,9 +1,10 @@
 /* jshint node: true, esversion: 6 */
-
 'use strict';
+
 var express = require('express'),
     bodyParser = require('body-parser'),
-    serveStatic = require('serve-static');
+    serveStatic = require('serve-static'),
+    websockets = require('./websockets.js');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use('/api/sessions', require('./controllers/api/sessions'));
 app.use('/api/users', require('./controllers/api/users'));
 app.use('/', require('./controllers/static'));
 
-app.listen(3000, function () {
+var server = app.listen(3000, function () {
   console.log('Serwer nasłuchuje na porcie 3000');
 });
+websockets.connect(server);
