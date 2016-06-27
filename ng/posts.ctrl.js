@@ -16,9 +16,7 @@ app.controller('PostsCtrl', function ($scope, PostsSvc) {
   });
 
   $scope.$on('ws:new_post', function (_, post) {
-    $scope.$apply(function () {
-      console.log(post);
-      $scope.posts.unshift(post);
-    });
+    console.log(post);
+    $scope.posts.unshift(post);
   });
 });
