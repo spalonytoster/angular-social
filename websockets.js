@@ -14,10 +14,9 @@ exports.connect = function (server) {
     console.log("Aktualnie połączonych klientow: " + clients.length);
 
     ws.on('close', function () {
-      console.log('Zamknięto połączenie. ');
+      console.log('Zamknięto połączenie.');
       _.remove(clients, ws);
       console.log("Aktualnie połączonych klientow: " + clients.length);
-      console.log(clients);
     });
   });
 };

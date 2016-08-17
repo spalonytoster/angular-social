@@ -5,7 +5,6 @@ app.controller('PostsCtrl', function ($scope, PostsSvc) {
         body: $scope.postBody
       })
       .success(function (post) {
-        // $scope.posts.unshift(post);
         $scope.postBody = null;
       });
     }
@@ -16,7 +15,8 @@ app.controller('PostsCtrl', function ($scope, PostsSvc) {
   });
 
   $scope.$on('ws:new_post', function (_, post) {
-    console.log(post);
-    $scope.posts.unshift(post);
+    $scope.$apply(function () {
+      $scope.posts.unshift(post);
+    });
   });
 });
