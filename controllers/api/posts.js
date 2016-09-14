@@ -17,7 +17,8 @@ router.post('/', function (req, res, next) {
     post.username = req.auth.username;
   }
   else {
-    res.sendStatus(401);
+    res.status(401).end();
+    return;
   }
   post.save(function (err, post) {
     if (err) { return next(err); }
