@@ -14,7 +14,11 @@ Uruchomenie bazy danych MongoDB:
 
     mongod --dbpath <path>/social
 
-Uruchomienie aplikacji w trybie produkcyjnym:
+Uruchomienie bazy Redis:
+
+    redis [--port port][--loglevel verbose]
+
+Uruchomienie aplikacji w trybie produkcyjnym (po skompilowaniu źródeł):
 
     npm start
 

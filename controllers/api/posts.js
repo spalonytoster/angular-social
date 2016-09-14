@@ -1,6 +1,7 @@
 var Post = require('../../models/post'),
     router = require('express').Router(),
-    websockets = require('../../websockets');
+    websockets = require('../../websockets'),
+    pubsub = require('../../pubsub');
 
 router.get('/', function (req, res, next) {
   Post.find().sort('-date').exec(function (err, posts) {
@@ -22,7 +23,7 @@ router.post('/', function (req, res, next) {
   }
   post.save(function (err, post) {
     if (err) { return next(err); }
-    websockets.broadcast('new_post', post);
+    pubsub.publish('new_post', post);
     res.status(201).json(post);
   });
 });

@@ -4,7 +4,8 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     serveStatic = require('serve-static'),
-    websockets = require('./websockets.js');
+    websockets = require('./websockets'),
+    pubsub = require('./pubsub');
 
 var app = express();
 
@@ -21,6 +22,9 @@ app.use('/api/posts', require('./controllers/api/posts'));
 app.use('/api/sessions', require('./controllers/api/sessions'));
 app.use('/api/users', require('./controllers/api/users'));
 app.use('/', require('./controllers/static'));
+
+// Redis pubsub
+pubsub.subscribe('new_post');
 
 var server = app.listen(3000, function () {
   console.log('Serwer nasłuchuje na porcie 3000');
