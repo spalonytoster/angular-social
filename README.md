@@ -6,22 +6,28 @@ Aplikacja bazuje na stosie MEAN.
 
 ### Sposób użycia
 
-Instalacja zależności:
+1.) Instalacja zależności:
 
     npm install && bower install
 
-Uruchomenie bazy danych MongoDB:
+2.) Uruchomienie bazy danych MongoDB:
 
     mongod --dbpath <path>/social
 
-Uruchomienie bazy Redis:
+3.) Uruchomienie bazy Redis:
 
     redis [--port port][--loglevel verbose]
 
-Uruchomienie aplikacji w trybie produkcyjnym (po skompilowaniu źródeł):
-
-    npm start
-
-Uruchomienie aplikacji w trybie deweloperskim:
+##### Uruchomienie aplikacji w trybie deweloperskim (automatyczna kompilacja assetów + nodemon):
 
     gulp dev
+
+##### Uruchomienie aplikacji w trybie produkcyjnym:
+
+1.) Kompilacja assetów
+
+    npm run build
+
+2.) Start serwera
+
+    npm start
