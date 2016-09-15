@@ -1,5 +1,5 @@
 angular.module('app')
-.service('UserSvc', function ($http) {
+.service('UserSvc', function ($http, $q) {
   var svc = this;
 
   svc.getUser = function () {
@@ -10,14 +10,15 @@ angular.module('app')
       username: username,
       password: password
     })
-    .then(function (val) {
+    .then(function (response) {
       if (rememberMe) {
         console.log('rememberMe - userSvc');
-        window.localStorage.token = val.data;
+        window.localStorage.token = response.data;
         console.log('token from localStorage: ' + window.localStorage.token);
       }
-      // svc.token = val.data;
-      $http.defaults.headers.common['X-auth'] = val.data;
+      // svc.token = response.data;
+      console.log('then: ' + response.data);
+      $http.defaults.headers.common['X-auth'] = response.data;
       return svc.getUser();
     });
   };

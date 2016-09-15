@@ -1,11 +1,14 @@
 <div class="container">
   <h1>Najnowsze posty</h1>
   <form role="form">
+    <p id="posts-messages" class="message message-{{message.severity}}" ng-repeat="message in messages">
+      {{ message.body }}
+    </p>
     <div class="form-group">
       <div class="input-group">
         <input ng-model="postBody" class="form-control" />
         <span class="input-group-btn">
-          <button ng-click="addPost()" class="btn btn-default">Dodaj post</button>
+          <button ng-click="addPost()" class="btn btn-info">Dodaj post</button>
         </span>
       </div>
     </div>

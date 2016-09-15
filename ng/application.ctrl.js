@@ -1,6 +1,7 @@
 angular.module('app')
 .controller('ApplicationCtrl', function ($scope, $http, UserSvc) {
   $scope.$on('login', function (_, user) {
+    console.log(user);
     $scope.currentUser = user;
   });
   $scope.logout = function () {
@@ -9,7 +10,7 @@ angular.module('app')
     delete window.localStorage.token;
   };
 
-  if (window.localStorage.token) {
+  if (typeof window.localStorage.token !== 'undefined') {
     console.log(window.localStorage.token);
     $http.defaults.headers.common['X-auth'] = window.localStorage.token;
     UserSvc.getUser()
